@@ -1,7 +1,5 @@
 package hazi.foursquarevenuelister
 
-import hazi.foursquarevenuelister.BuildConfig.CLIENT_ID
-import hazi.foursquarevenuelister.BuildConfig.CLIENT_SECRET
 import hazi.foursquarevenuelister.model.DetailsResponse
 import hazi.foursquarevenuelister.model.nearVenues.NearVenuesResponse
 import retrofit2.Call
@@ -15,17 +13,17 @@ interface FoursquareService {
     fun searchNearVenues(
         @Query("query") query: String,
         @Query("near") near: String,
-        @Query("limit") limit: Int,
-        @Query("client_id") clientId: String = CLIENT_ID,
-        @Query("client_secret") clientSecret: String = CLIENT_SECRET,
+        @Query("limit") limit: Int = 50,
+        @Query("client_id") clientId: String = "M5M31S51C0KAHBUIXOQHW3WDJ3OKDLMGL2YMQTARQJLIJYAF",
+        @Query("client_secret") clientSecret: String = "ZS1V4T05RHCWXEGGMHNYFFLDKVAW2AZSAFXAV4TBNTGQTYOX",
         @Query("v") version: String = API_CLIENT_VERSION
     ): Call<NearVenuesResponse>
 
     @GET("/v2/venues/{id}")
     fun detailsOfVenue(
         @Path("id") id: String,
-        @Query("client_id") clientId: String = CLIENT_ID,
-        @Query("client_secret") clientSecret: String = CLIENT_SECRET,
+        @Query("client_id") clientId: String = "M5M31S51C0KAHBUIXOQHW3WDJ3OKDLMGL2YMQTARQJLIJYAF",
+        @Query("client_secret") clientSecret: String = "ZS1V4T05RHCWXEGGMHNYFFLDKVAW2AZSAFXAV4TBNTGQTYOX",
         @Query("v") version: String = API_CLIENT_VERSION
     ): Call<DetailsResponse>
 
