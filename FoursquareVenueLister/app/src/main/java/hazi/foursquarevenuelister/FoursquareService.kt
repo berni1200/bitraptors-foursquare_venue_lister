@@ -11,9 +11,10 @@ interface FoursquareService {
 
     @GET("/v2/venues/search")
     fun searchNearVenues(
-        @Query("query") query: String,
-        @Query("near") near: String,
-        @Query("limit") limit: Int = 50,
+        @Query("query") query: String = "tacos",
+        //@Query("near") near: String, //ha valaminek a közelében akarjuk nézni
+        @Query("ll") ll: String, //ha konkrét koordinátákat akarunk
+        @Query("limit") limit: Int = 250,
         @Query("client_id") clientId: String = "M5M31S51C0KAHBUIXOQHW3WDJ3OKDLMGL2YMQTARQJLIJYAF",
         @Query("client_secret") clientSecret: String = "ZS1V4T05RHCWXEGGMHNYFFLDKVAW2AZSAFXAV4TBNTGQTYOX",
         @Query("v") version: String = API_CLIENT_VERSION

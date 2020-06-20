@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MyListActivity" >
+    android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/listview"
+    <TextView
+        android:id="@+id/listText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:divider="@color/material_blue_grey_800"
-        android:dividerHeight="1dp">
-    </ListView>
-
+        android:layout_gravity="center" />
 </LinearLayout>
