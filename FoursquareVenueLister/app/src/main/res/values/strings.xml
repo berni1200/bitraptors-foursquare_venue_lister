@@ -2,4 +2,9 @@
     <string name="app_name">FoursquareVenueLister</string>
     <string name="main_button_text">Go To Next Page</string>
     <string name="second_page_text">Second page!</string>
+    <string name="twVenueName_text">My Favourite shop</string>
+    <string name="show_gallery">Show Gallery</string>
+    <string name="tvRating_text">Rating:</string>
+    <string name="tvAddress_text">Address:</string>
+    <string name="tvDescription_text">Description:</string>
 </resources>

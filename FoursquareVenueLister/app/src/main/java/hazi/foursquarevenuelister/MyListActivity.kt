@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import hazi.foursquarevenuelister.model.DetailsResponse
@@ -30,6 +31,7 @@ class MyListActivity : Activity(){
     private val URL_BASE = "https://api.foursquare.com/"
 
     var ids : MutableList<String>? = mutableListOf()
+    var names : MutableList<String>? = mutableListOf()
     var venues : List<Venue>? = null
 
     lateinit var listview : ListView
@@ -53,17 +55,16 @@ class MyListActivity : Activity(){
             }
 
             override fun onResponse(call: Call<NearVenuesResponse>, response: Response<NearVenuesResponse>) {
-                Toast.makeText(this@MyListActivity, response.body().toString(), Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@MyListActivity, response.body().toString(), Toast.LENGTH_LONG).show()
                 venues = response.body()?.response?.venues
                 if(venues != null){
                     for(i in venues!!){
-                        print("fooooor: ")
                         ids?.add(i.id)
-                        println(ids?.size)
+                        names?.add(i.name)
                     }
                     if(ids != null){
                         var arrayAdapter = ArrayAdapter<String>(this@MyListActivity,
-                            R.layout.simple_list_item, R.id.listText, ids!!)
+                            R.layout.simple_list_item, R.id.listText, names!!)
                         listview.adapter = arrayAdapter
                     }
                 }
@@ -90,7 +91,15 @@ class MyListActivity : Activity(){
                 })
             }
         }
+        listview.setOnItemClickListener { parent, view, position, id ->
+            Toast.makeText(this, id.toString(),Toast.LENGTH_SHORT).show()
+            var intent = Intent(this, DetailsActivity::class.java)
+            //var ids2 = ids?.toTypedArray()
 
+            intent.putExtra("id", ids!![id.toInt()])
+            //intent.putExtra("ids", ids2)
+            startActivity(intent)
+        }
 
     }
 
