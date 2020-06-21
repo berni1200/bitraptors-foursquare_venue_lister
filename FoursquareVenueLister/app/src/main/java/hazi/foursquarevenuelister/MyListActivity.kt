@@ -72,7 +72,7 @@ class MyListActivity : Activity(){
             }
         })
 
-        fun doNothing(){ //ez kell majd a részletek lekéréséhez
+        /*fun doNothing(){ //ez kell majd a részletek lekéréséhez
             val foursquare = retrofit.create(FoursquareService::class.java)
             if(venues != null){
                 val detailsCall = foursquare.detailsOfVenue(venues!![0].id)
@@ -90,9 +90,9 @@ class MyListActivity : Activity(){
 
                 })
             }
-        }
+        }*/
         listview.setOnItemClickListener { parent, view, position, id ->
-            Toast.makeText(this, id.toString(),Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, id.toString(),Toast.LENGTH_SHORT).show()
             var intent = Intent(this, DetailsActivity::class.java)
             //var ids2 = ids?.toTypedArray()
 

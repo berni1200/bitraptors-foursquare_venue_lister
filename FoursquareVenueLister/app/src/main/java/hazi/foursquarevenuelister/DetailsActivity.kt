@@ -1,10 +1,12 @@
 package hazi.foursquarevenuelister
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.view.View
 import android.widget.Toast
 import hazi.foursquarevenuelister.model.DetailsResponse
 import kotlinx.android.synthetic.main.activity_details.*
@@ -22,12 +24,15 @@ class DetailsActivity : AppCompatActivity() {
 
     private val URL_BASE = "https://api.foursquare.com/"
 
+    private var photosList = arrayListOf<String>()
+    private lateinit var id : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         val extras = intent.extras
-        val id = extras!!["id"] as String
-        Toast.makeText(this@DetailsActivity, id.toString(), Toast.LENGTH_LONG).show()
+        id = extras!!["id"] as String
+        //Toast.makeText(this@DetailsActivity, id.toString(), Toast.LENGTH_LONG).show()
 
         val retrofit = Retrofit.Builder()
             .baseUrl(URL_BASE)
@@ -44,7 +49,7 @@ class DetailsActivity : AppCompatActivity() {
                 call: Call<DetailsResponse>,
                 response: Response<DetailsResponse>
             ) {
-                Toast.makeText(this@DetailsActivity, response.body()?.response?.venue?.name, Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@DetailsActivity, response.body()?.response?.venue?.name, Toast.LENGTH_LONG).show()
                 if(response.body()?.response?.venue?.location?.address == null){
                     tvAddress.text = "Address: -"
                 }else{
@@ -70,10 +75,24 @@ class DetailsActivity : AppCompatActivity() {
                 }else{
                     //kell egy "notfound" kép az imageview-hoz
                 }
-
+                if(response.body()?.response?.venue?.photos?.groups != null){
+                    for(i in response.body()?.response?.venue?.photos?.groups!!){
+                        for(j in i.items){
+                            photosList.add(j.prefix + "original" + j.suffix)
+                        }
+                    }
+                }
+                println(response)
             }
 
         })
+    }
+
+    fun showGallery(view: View) {
+        var intent = Intent(this, GalleryActivity::class.java)
+        intent.putStringArrayListExtra("photosList", photosList)
+        intent.putExtra("id", id)
+        startActivity(intent)
     }
 }
 
