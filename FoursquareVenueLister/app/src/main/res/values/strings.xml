@@ -11,4 +11,6 @@
     <string name="tvFoodtype_text">What are you looking for?</string>
     <string name="etFoodType_text">e.g. tacos</string>
     <string name="title_activity_maps">Map</string>
+    <string name="sChooseViews_text">Enable map view</string>
+    <string name="bMap_text">Display venues in Map</string>
 </resources>

@@ -54,7 +54,7 @@ class MyListActivity : Activity(){
 
         val foursquare = retrofit.create(FoursquareService::class.java)
         //val venuesCall = foursquare.searchNearVenues("tacos", "Chicago, IL")
-        val venuesCall = foursquare.searchNearVenues("$foodtype","$latitude,$longitude")
+        val venuesCall = foursquare.searchNearVenues(foodtype,"$latitude,$longitude")
         venuesCall.enqueue(object: Callback<NearVenuesResponse> {
             override fun onFailure(call: Call<NearVenuesResponse>, t: Throwable) {
                 Toast.makeText(this@MyListActivity, t.message, Toast.LENGTH_LONG).show()

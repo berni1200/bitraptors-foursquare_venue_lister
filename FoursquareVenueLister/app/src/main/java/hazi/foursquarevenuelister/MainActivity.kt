@@ -73,5 +73,15 @@ class MainActivity : AppCompatActivity(), MyLocationProvider.OnNewLocationAvaila
 
     }
 
+    fun goToMap(view: View) {
+        getCurrent = true
+        foodtype = etFoodtype.text.toString()
+        var intent = Intent(this, MapsActivity::class.java)
+        intent.putExtra("foodtype", foodtype)
+        intent.putExtra("latitude", latitude)
+        intent.putExtra("longitude", longitude)
+        startActivity(intent)
+    }
+
 
 }
