@@ -74,6 +74,7 @@ class MyListActivity : Activity(){
                         listview.adapter = arrayAdapter
                     }
                 }
+                println(response)
                 //textView2.text = venues?.size.toString()
             }
         })

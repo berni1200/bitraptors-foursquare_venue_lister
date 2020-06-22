@@ -9,6 +9,7 @@ import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.Toast
 import hazi.foursquarevenuelister.model.DetailsResponse
+import hazi.foursquarevenuelister.model.venuePhotos.VenuePhotos
 import kotlinx.android.synthetic.main.activity_details.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -82,7 +83,32 @@ class DetailsActivity : AppCompatActivity() {
                         }
                     }
                 }
-                println(response)
+
+                //adding photos from listed items that contains the venue
+                if(response.body()?.response?.venue?.listed?.groups != null){
+                    for(i in response.body()?.response?.venue?.listed?.groups!!){
+                        for(j in i.items){
+                            photosList.add(j.photo.prefix + "original" + j.photo.suffix)
+                        }
+                    }
+                }
+
+                //csak képek lekérése
+                /*val photosCall = foursquare.photosOfVenue(id)
+                photosCall.enqueue(object: retrofit2.Callback<VenuePhotos> {
+                    override fun onFailure(call: Call<VenuePhotos>, t: Throwable) {
+                        Toast.makeText(this@DetailsActivity, t.message, Toast.LENGTH_LONG).show()
+                    }
+
+                    override fun onResponse(call: Call<VenuePhotos>, response: Response<VenuePhotos>) {
+                        for(i in response.body()?.response?.photos?.items!!){
+                            photosList.add(i.prefix + "original" + i.suffix)
+                        }
+                        println(response)
+                    }
+
+
+                })*/
             }
 
         })

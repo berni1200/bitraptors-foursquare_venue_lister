@@ -23,8 +23,9 @@ class GalleryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gallery)
         val extras = intent.extras
-        //val photosList = extras!!["photosList"] as ArrayList<String>
-        val id = extras!!["id"] as String
+        val photosList = extras!!["photosList"] as ArrayList<String>
+
+        /*val id = extras!!["id"] as String
 
         val retrofit = Retrofit.Builder()
             .baseUrl(URL_BASE)
@@ -44,7 +45,7 @@ class GalleryActivity : AppCompatActivity() {
 
             }
 
-        })
+        })*/
 
         rvGallery.setHasFixedSize(true)
         val layoutManager = GridLayoutManager(this, 2)

@@ -4,28 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="6"
     tools:context=".DetailsActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/svDetails"
+        >
 
-    <TextView
-        android:id="@+id/tvVenueName"
-        android:layout_width="341dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/twVenueName_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:id="@+id/llDetails"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvVenueName"
+                android:layout_width="341dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/twVenueName_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/ivBestPhoto"
-        android:layout_width="249dp"
-        android:layout_height="199dp"
-        android:layout_marginTop="104dp"
-        android:contentDescription="bestimage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/ivBestPhoto"
+                android:layout_width="236dp"
+                android:layout_height="199dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:contentDescription="bestimage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvDescritption"
+                android:layout_width="325dp"
+                android:layout_height="74dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="20dp"
+                android:scrollbars="vertical"
+                android:text="@string/tvDescription_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivBestPhoto" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="231dp"
+                android:layout_height="44dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="20dp"
+                android:text="@string/tvAddress_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescritption" />
+
+            <TextView
+                android:id="@+id/tvRating"
+                android:layout_width="232dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/tvRating_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
+        </LinearLayout>
+
+    </ScrollView>
+
 
     <Button
         android:id="@+id/bGallery"
@@ -36,36 +85,7 @@
         android:onClick="showGallery"
         android:text="@string/show_gallery"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <TextView
-        android:id="@+id/tvDescritption"
-        android:layout_width="325dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="16dp"
-        android:scrollbars="vertical"
-        android:text="@string/tvDescription_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivBestPhoto" />
 
-    <TextView
-        android:id="@+id/tvAddress"
-        android:layout_width="231dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/tvAddress_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescritption" />
-
-    <TextView
-        android:id="@+id/tvRating"
-        android:layout_width="232dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="60dp"
-        android:text="@string/tvRating_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
 </androidx.constraintlayout.widget.ConstraintLayout>
