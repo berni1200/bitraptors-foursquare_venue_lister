@@ -16,6 +16,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), MyLocationProvider.OnNewLocationAvailable {
 
@@ -25,13 +26,13 @@ class MainActivity : AppCompatActivity(), MyLocationProvider.OnNewLocationAvaila
 
     var latitude = "40.7463956"
     var longitude = "-73.9852992"
+    var foodtype = "tacos"
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //getCurrent = true
         locationHelper = MyLocationProvider(this, this)
         startLocationMonitoring()
     }
@@ -43,7 +44,11 @@ class MainActivity : AppCompatActivity(), MyLocationProvider.OnNewLocationAvaila
 
     fun goToSecond(view: View) {
         getCurrent = true
+        foodtype = etFoodtype.text.toString()
         var intent = Intent(this, MyListActivity::class.java)
+        intent.putExtra("foodtype", foodtype)
+        intent.putExtra("latitude", latitude)
+        intent.putExtra("longitude", longitude)
         startActivity(intent)
     }
 

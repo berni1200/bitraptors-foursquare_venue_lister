@@ -64,10 +64,8 @@
         android:layout_width="232dp"
         android:layout_height="39dp"
         android:layout_marginStart="60dp"
-        android:layout_marginBottom="144dp"
+        android:layout_marginTop="60dp"
         android:text="@string/tvRating_text"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddress"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAddress" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,6 +27,7 @@ class MyListActivity : Activity(){
 
     var latitude = "40.7463956"
     var longitude = "-73.9852992"
+    var foodtype = "nottacos"
 
     private val URL_BASE = "https://api.foursquare.com/"
 
@@ -41,6 +42,11 @@ class MyListActivity : Activity(){
         setContentView(R.layout.activity_list)
         listview = findViewById(R.id.listview)
 
+        val extras = intent.extras
+        foodtype = extras!!["foodtype"] as String
+        latitude = extras["latitude"] as String
+        longitude = extras["longitude"] as String
+
         val retrofit = Retrofit.Builder()
             .baseUrl(URL_BASE)
             .addConverterFactory(GsonConverterFactory.create())
@@ -48,7 +54,7 @@ class MyListActivity : Activity(){
 
         val foursquare = retrofit.create(FoursquareService::class.java)
         //val venuesCall = foursquare.searchNearVenues("tacos", "Chicago, IL")
-        val venuesCall = foursquare.searchNearVenues("tacos","$latitude,$longitude")
+        val venuesCall = foursquare.searchNearVenues("$foodtype","$latitude,$longitude")
         venuesCall.enqueue(object: Callback<NearVenuesResponse> {
             override fun onFailure(call: Call<NearVenuesResponse>, t: Throwable) {
                 Toast.makeText(this@MyListActivity, t.message, Toast.LENGTH_LONG).show()
