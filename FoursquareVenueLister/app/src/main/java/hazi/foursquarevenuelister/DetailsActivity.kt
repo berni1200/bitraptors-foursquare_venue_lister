@@ -85,13 +85,16 @@ class DetailsActivity : AppCompatActivity() {
                 }
 
                 //adding photos from listed items that contains the venue
-                if(response.body()?.response?.venue?.listed?.groups != null){
+
+                /*if(response.body()?.response?.venue?.listed?.groups != null){
                     for(i in response.body()?.response?.venue?.listed?.groups!!){
-                        for(j in i.items){
-                            photosList.add(j.photo.prefix + "original" + j.photo.suffix)
-                        }
+                            for (j in i.items) {
+
+                                photosList.add(j.photo.prefix + "original" + j.photo.suffix)
+                            }
+
                     }
-                }
+                }*/
 
                 //csak képek lekérése
                 /*val photosCall = foursquare.photosOfVenue(id)

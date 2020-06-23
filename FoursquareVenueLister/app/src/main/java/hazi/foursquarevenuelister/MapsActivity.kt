@@ -33,7 +33,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     var venues : List<Venue>? = null
 
     private var locationsList = arrayListOf<String>() //"latitude,longitude"
-    private var idList = arrayListOf<String>()
     private lateinit var currentLocation : LatLng
     lateinit var markers : ArrayList<Marker>
 
@@ -109,6 +108,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))*/
         mMap = googleMap
+        mMap.setOnMarkerClickListener { marker -> onMarkerClick(marker) }
         mMap.addMarker(MarkerOptions().position(currentLocation).title("You are here"))
 
 
@@ -121,8 +121,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         }
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation))
+        mMap.setMinZoomPreference(12.0f)
 
     }
+
 
     override fun onMarkerClick(marker: Marker?): Boolean {
         var j = 0
@@ -138,8 +140,4 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
         return true
     }
 
-    override fun onStop() {
-        super.onStop()
-        mMap.clear()
-    }
 }
