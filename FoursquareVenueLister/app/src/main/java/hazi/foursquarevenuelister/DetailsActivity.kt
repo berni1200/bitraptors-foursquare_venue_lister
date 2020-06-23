@@ -90,9 +90,7 @@ class DetailsActivity : AppCompatActivity() {
                     }
                 }
                 if(response.body()?.response?.venue?.url != null){
-                    tvUrlContact.text = "Url: " + response.body()?.response?.venue?.url
-                }else{
-                    tvUrlContact.text = "Url: -"
+                    tvUrlContact.text = "${response.body()?.response?.venue?.url!!}"
                 }
 
 

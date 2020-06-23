@@ -7,7 +7,7 @@
     <string name="tvRating_text">Rating:</string>
     <string name="tvAddress_text">Address:</string>
     <string name="tvDescription_text">Description:</string>
-    <string name="tvWelcome_text">Welcome to the Venue Lister application! Please fill in the boxes below to start searching for nearby venues.</string>
+    <string name="tvWelcome_text">Welcome to the Venue Lister application!</string>
     <string name="tvFoodtype_text">What are you looking for?</string>
     <string name="etFoodType_text">tacos, pizza etc.</string>
     <string name="title_activity_maps">Map</string>
@@ -20,5 +20,5 @@
     <string name="tvFacebookContact_text">Facebook:</string>
     <string name="tvIsHoliday_text" />
     <string name="tvInstagramContact_text">Instagram:</string>
-    <string name="tvUrlContact_text">Url:</string>
+    <string name="tvUrlContact_text"> </string>
 </resources>

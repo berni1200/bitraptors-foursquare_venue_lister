@@ -15,6 +15,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20sp"
+        android:textAlignment="center"
         app:layout_constraintVertical_bias="0.1" />
 
     <Button
@@ -35,6 +37,7 @@
         android:layout_height="55dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="256dp"
+        android:textSize="16sp"
         android:text="@string/tvFoodtype_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
