@@ -2,7 +2,6 @@ package hazi.foursquarevenuelister
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -70,6 +69,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                         locationsList.add(i.location.lat.toString() + "," + i.location.lng.toString())
                     }
                 }
+                if(names == null || names?.size == 0){
+                    Toast.makeText(this@MapsActivity, "No venues find nearby with the given type.", Toast.LENGTH_LONG).show()
+                }
                 var j = 0
                 for(i in locationsList){
                     var splitted = i.split(",")
@@ -79,11 +81,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 }
             }
         })
-
-        /*var extras = intent.extras
-        currentLocation = LatLng((extras!!["latitude"] as String).toDouble(), (extras!!["longitude"] as String).toDouble())
-        locationsList = extras!!["locationsList"] as ArrayList<String>
-        idList = extras!!["idList"] as ArrayList<String>*/
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -135,8 +132,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
             j++
         }
         var intent = Intent(this, DetailsActivity::class.java)
-        intent.putExtra("id", ids!!.get(j))
-        startActivity(intent)
+        if(marker?.position?.latitude != latitude.toDouble() && marker?.position?.longitude != longitude.toDouble()){
+            intent.putExtra("id", ids!!.get(j))
+            startActivity(intent)
+        }
         return true
     }
 

@@ -1,25 +1,17 @@
 package hazi.foursquarevenuelister
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.Toast
 import hazi.foursquarevenuelister.model.DetailsResponse
-import hazi.foursquarevenuelister.model.venuePhotos.VenuePhotos
 import kotlinx.android.synthetic.main.activity_details.*
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Request.Builder
 import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.URL
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -33,7 +25,7 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_details)
         val extras = intent.extras
         id = extras!!["id"] as String
-        //Toast.makeText(this@DetailsActivity, id.toString(), Toast.LENGTH_LONG).show()
+        bGallery.isEnabled = true
 
         val retrofit = Retrofit.Builder()
             .baseUrl(URL_BASE)
@@ -50,7 +42,6 @@ class DetailsActivity : AppCompatActivity() {
                 call: Call<DetailsResponse>,
                 response: Response<DetailsResponse>
             ) {
-                //Toast.makeText(this@DetailsActivity, response.body()?.response?.venue?.name, Toast.LENGTH_LONG).show()
                 if(response.body()?.response?.venue?.location?.address == null){
                     tvAddress.text = "Address: -"
                 }else{
@@ -68,6 +59,42 @@ class DetailsActivity : AppCompatActivity() {
                 }else{
                     tvRating.text = "Rating: "+ response.body()?.response?.venue?.rating.toString()
                 }
+                if(response.body()?.response?.venue?.popular?.isOpen != null){
+                    if(response.body()?.response?.venue?.popular?.isOpen!!){
+                        tvOpen.text = "Now open"
+                    }else{
+                        tvOpen.text = "Now closed"
+                    }
+                }
+                if(response.body()?.response?.venue?.popular?.isLocalHoliday != null){
+                    if(response.body()?.response?.venue?.popular?.isLocalHoliday!!){
+                        tvIsHoliday.text = "Local holiday destination"
+                    }
+                }
+                var contact = response.body()?.response?.venue?.contact
+                if(contact != null){
+                    if(contact.facebookName != null){
+                        tvFacebookContact.text = "Facebook: " + contact?.facebookName!!
+                    }else{
+                        tvFacebookContact.text = "Facebook: -"
+                    }
+                    if(contact.instagram != null){
+                        tvInstagramContact.text = "Instagram: " + contact?.instagram!!
+                    }else{
+                        tvInstagramContact.text = "Instagram: -"
+                    }
+                    if(contact.formattedPhone != null){
+                        tvPhoneContact.text = "Phone: " + contact?.formattedPhone!!
+                    }else{
+                        tvPhoneContact.text = "Phone: -"
+                    }
+                }
+                if(response.body()?.response?.venue?.url != null){
+                    tvUrlContact.text = "Url: " + response.body()?.response?.venue?.url
+                }else{
+                    tvUrlContact.text = "Url: -"
+                }
+
 
                 if(response.body()?.response?.venue?.bestPhoto?.prefix != null && response.body()?.response?.venue?.bestPhoto?.suffix != null){
                     val responseUrl = response.body()?.response?.venue?.bestPhoto?.prefix + "original" + response.body()?.response?.venue?.bestPhoto?.suffix
@@ -86,16 +113,19 @@ class DetailsActivity : AppCompatActivity() {
 
                 //adding photos from listed items that contains the venue
 
-                /*if(response.body()?.response?.venue?.listed?.groups != null){
+                if(response.body()?.response?.venue?.listed != null && response.body()?.response?.venue?.listed?.groups != null){
                     for(i in response.body()?.response?.venue?.listed?.groups!!){
-                            for (j in i.items) {
-
+                        for (j in i.items) {
+                            if(j.photo != null){
                                 photosList.add(j.photo.prefix + "original" + j.photo.suffix)
                             }
-
+                        }
                     }
-                }*/
+                }
 
+                if(photosList.size == 0){
+                    bGallery.isEnabled = false
+                }
                 //csak képek lekérése
                 /*val photosCall = foursquare.photosOfVenue(id)
                 photosCall.enqueue(object: retrofit2.Callback<VenuePhotos> {
@@ -107,7 +137,6 @@ class DetailsActivity : AppCompatActivity() {
                         for(i in response.body()?.response?.photos?.items!!){
                             photosList.add(i.prefix + "original" + i.suffix)
                         }
-                        println(response)
                     }
 
 

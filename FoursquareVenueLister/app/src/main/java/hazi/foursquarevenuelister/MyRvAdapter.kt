@@ -1,13 +1,10 @@
 package hazi.foursquarevenuelister
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import kotlinx.android.synthetic.main.activity_details.*
 import kotlinx.android.synthetic.main.gallery_grid_item.view.*
 
 
@@ -15,7 +12,7 @@ class MyRvAdapter(var context : Context, var photosList : ArrayList<String>) : R
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoHolder {
         var view = LayoutInflater.from(parent.getContext()).inflate(R.layout.gallery_grid_item, parent, false);
-        return MyRvAdapter.PhotoHolder(view)
+        return PhotoHolder(view)
     }
 
     override fun getItemCount(): Int = photosList.size

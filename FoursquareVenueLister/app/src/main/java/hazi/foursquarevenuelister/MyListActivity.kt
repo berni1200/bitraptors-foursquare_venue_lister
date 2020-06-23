@@ -1,22 +1,11 @@
 package hazi.foursquarevenuelister
 
-import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.ListActivity
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
-import hazi.foursquarevenuelister.model.DetailsResponse
 import hazi.foursquarevenuelister.model.nearVenues.NearVenuesResponse
 import hazi.foursquarevenuelister.model.nearVenues.Venue
-import kotlinx.android.synthetic.main.activity_list.*
-import kotlinx.android.synthetic.main.simple_list_item.*
-import org.json.JSONException
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,7 +42,6 @@ class MyListActivity : Activity(){
             .build()
 
         val foursquare = retrofit.create(FoursquareService::class.java)
-        //val venuesCall = foursquare.searchNearVenues("tacos", "Chicago, IL")
         val venuesCall = foursquare.searchNearVenues(foodtype,"$latitude,$longitude")
         venuesCall.enqueue(object: Callback<NearVenuesResponse> {
             override fun onFailure(call: Call<NearVenuesResponse>, t: Throwable) {
@@ -61,7 +49,6 @@ class MyListActivity : Activity(){
             }
 
             override fun onResponse(call: Call<NearVenuesResponse>, response: Response<NearVenuesResponse>) {
-                //Toast.makeText(this@MyListActivity, response.body().toString(), Toast.LENGTH_LONG).show()
                 venues = response.body()?.response?.venues
                 if(venues != null){
                     for(i in venues!!){
@@ -74,8 +61,10 @@ class MyListActivity : Activity(){
                         listview.adapter = arrayAdapter
                     }
                 }
-                println(response)
-                //textView2.text = venues?.size.toString()
+                if(names == null || names?.size == 0){
+                    Toast.makeText(this@MyListActivity, "No venues find nearby with the given type.", Toast.LENGTH_LONG).show()
+                }
+
             }
         })
 
@@ -99,12 +88,9 @@ class MyListActivity : Activity(){
             }
         }*/
         listview.setOnItemClickListener { parent, view, position, id ->
-            //Toast.makeText(this, id.toString(),Toast.LENGTH_SHORT).show()
             var intent = Intent(this, DetailsActivity::class.java)
-            //var ids2 = ids?.toTypedArray()
 
             intent.putExtra("id", ids!![id.toInt()])
-            //intent.putExtra("ids", ids2)
             startActivity(intent)
         }
 

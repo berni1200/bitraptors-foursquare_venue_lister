@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">FoursquareVenueLister</string>
-    <string name="main_button_text">Search for venues</string>
+    <string name="main_button_text">Show venues as List</string>
     <string name="second_page_text">Second page!</string>
     <string name="twVenueName_text"> </string>
     <string name="show_gallery">Show Gallery</string>
@@ -9,8 +9,16 @@
     <string name="tvDescription_text">Description:</string>
     <string name="tvWelcome_text">Welcome to the Venue Lister application! Please fill in the boxes below to start searching for nearby venues.</string>
     <string name="tvFoodtype_text">What are you looking for?</string>
-    <string name="etFoodType_text">e.g. tacos</string>
+    <string name="etFoodType_text">tacos, pizza etc.</string>
     <string name="title_activity_maps">Map</string>
     <string name="sChooseViews_text">Enable map view</string>
-    <string name="bMap_text">Display venues in Map</string>
+    <string name="bMap_text">Show venues on Map</string>
+    <string name="ivBestPhoto_desc">bestimage</string>
+    <string name="tvOpen">closed</string>
+    <string name="tvContacts_text">Contacts:</string>
+    <string name="tvPhoneContact_text">Phone:</string>
+    <string name="tvFacebookContact_text">Facebook:</string>
+    <string name="tvIsHoliday_text" />
+    <string name="tvInstagramContact_text">Instagram:</string>
+    <string name="tvUrlContact_text">Url:</string>
 </resources>
